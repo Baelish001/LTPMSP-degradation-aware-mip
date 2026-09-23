@@ -33,8 +33,10 @@ schedule outcome that does not depend on theta, Lambda, or rho, so it is
 taken as given from Table 2 / step1_solve_export.py's own output.
 
 Requires: the 17 original instance files (7-column job rows: id, skill,
-mach, E, L, P, omega) — e.g. from ../data/raw_instances/, or equivalently
-the first 7 columns of any *_DEG.txt file in ../data/augmented_instances/.
+mach, E, L, P, omega), sitting in the same directory as this script (this
+repository uses a flat layout — see README.md "File layout"). Equivalently,
+the first 7 columns of any *_DEG.txt file, which are identical to the
+original instance files.
 
 No Gurobi license is required to run this script.
 
@@ -240,6 +242,8 @@ def main(instance_dir):
 
 if __name__ == "__main__":
     import sys
-    default_dir = os.path.join(os.path.dirname(__file__), "..", "data", "raw_instances")
+    # Flat repository layout: the raw instance files sit in the same
+    # directory as this script (see README.md "File layout").
+    default_dir = os.path.dirname(os.path.abspath(__file__))
     instance_dir = sys.argv[1] if len(sys.argv) > 1 else default_dir
     main(instance_dir)
